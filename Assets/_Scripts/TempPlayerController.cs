@@ -2,7 +2,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerController : MonoBehaviour
+public class TempPlayerController : MonoBehaviour
 {
     [SerializeField] private float speed;
     
