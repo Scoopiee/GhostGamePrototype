@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -35,7 +36,7 @@ public class PlayerController : MonoBehaviour
 
         if (_interactAction.triggered)
         {
-            Interact();
+            //
         }
     }
 
@@ -44,9 +45,13 @@ public class PlayerController : MonoBehaviour
         _rb.linearVelocity = _moveInput * speed;
     }
 
-    private void Interact()
+    private void Interact(GameObject target)
     {
-        Debug.Log("Interact");
-        // TODO: Make an interact function which hides a player if hiding spot in certain range
+        // Check if the target is interactable
+        if (target.TryGetComponent(out Interactable interactable))
+        {
+            interactable.Interact();
+        }
+        
     }
 }
