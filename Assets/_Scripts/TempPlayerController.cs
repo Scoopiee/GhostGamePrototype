@@ -1,23 +1,18 @@
-using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class TempPlayerController : MonoBehaviour
 {
-    [SerializeField] private float speed;
+    [SerializeField] private float speed = 5f;
+    [SerializeField] private GameObject target = null;
+
     
-    private InputAction _moveAction;
+    public InputAction _moveAction;
     private InputAction _interactAction;
-    
     private Vector2 _moveInput = Vector2.zero;
-    private bool _interact;
     
     private Rigidbody2D _rb;
     
-    private float _yDirection;
-    private float _xDirection;
-    private GameObject target;  
-
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -35,7 +30,7 @@ public class TempPlayerController : MonoBehaviour
     {
         _moveInput = _moveAction.ReadValue<Vector2>();
 
-        if (_interactAction.triggered)
+        if (_interactAction.triggered && target != null)
         {
             Interact(target);
         }
@@ -48,8 +43,7 @@ public class TempPlayerController : MonoBehaviour
 
     private void Interact(GameObject target)
     {
-        // Check if the target is interactable
-        if (target.TryGetComponent(out Interactable interactable))
+        if (target.TryGetComponent(out Interactable interactable)) // check if the target has an Interactable component
         {
             interactable.Interact();
             print("Interacting with " + target.name);
@@ -57,13 +51,14 @@ public class TempPlayerController : MonoBehaviour
 
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    private void OnTriggerEnter2D(Collider2D other) // use colliders to find stuff to interact with 
     {
         target = other.gameObject;
     }
 
-    private void OnTriggerExit2D(Collider2D other)
+    private void OnTriggerExit2D(Collider2D other) // use colliders to find stuff to not want to interact with anymore because we learn to live and let go
     {
         target = null;
     }
+    
 }
