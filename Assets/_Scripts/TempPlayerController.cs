@@ -16,7 +16,8 @@ public class PlayerController : MonoBehaviour
     
     private float _yDirection;
     private float _xDirection;
-    
+    private GameObject target;  
+
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
@@ -36,7 +37,7 @@ public class PlayerController : MonoBehaviour
 
         if (_interactAction.triggered)
         {
-            //
+            Interact(target);
         }
     }
 
@@ -51,7 +52,18 @@ public class PlayerController : MonoBehaviour
         if (target.TryGetComponent(out Interactable interactable))
         {
             interactable.Interact();
+            print("Interacting with " + target.name);
         }
-        
+
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        target = other.gameObject;
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        target = null;
     }
 }
