@@ -3,15 +3,19 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
+    [SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private float speed;
     
     private InputAction _moveAction;
     private InputAction _interactAction;
+    private InputAction _pauseAction;
     
     private Vector2 _moveInput = Vector2.zero;
     private bool _interact;
+    private bool _pause;
     
     private Rigidbody2D _rb;
+    
     
     private float _yDirection;
     private float _xDirection;
@@ -27,17 +31,34 @@ public class PlayerController : MonoBehaviour
         _moveAction = InputSystem.actions.FindAction("Move");
         // Check for E key (or north button on controller) press
         _interactAction = InputSystem.actions.FindAction("Interact");
+        // Check for Escape key (or start button on controller) press
+        _pauseAction = InputSystem.actions.FindAction("Pause");
     }
 
     private void Update()
     {
-        _moveInput = _moveAction.ReadValue<Vector2>();
-
-        if (_interactAction.triggered)
+        if (!pauseMenu.paused)
         {
-            Interact();
+            _moveInput = _moveAction.ReadValue<Vector2>();
+
+            if (_interactAction.triggered)
+            {
+                Interact();
+            }
         }
-    }
+        
+        if (_pauseAction.triggered)
+        {
+            if (pauseMenu.paused)
+            {
+                pauseMenu.ResumeGame();
+            }
+            else
+            {
+                pauseMenu.PauseGame();
+            }
+        }
+}
 
     private void FixedUpdate()
     {
