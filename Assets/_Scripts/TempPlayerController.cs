@@ -1,10 +1,11 @@
+using System.Net.Http.Headers;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class TempPlayerController : MonoBehaviour
 {
     [SerializeField] private float speed = 5f;
-    [SerializeField] private GameObject target = null;
+    [SerializeField] private Interactable interactableTarget = null;
 
     
     public InputAction _moveAction;
@@ -30,9 +31,9 @@ public class TempPlayerController : MonoBehaviour
     {
         _moveInput = _moveAction.ReadValue<Vector2>();
 
-        if (_interactAction.triggered && target != null)
+        if (_interactAction.triggered && interactableTarget != null)
         {
-            Interact(target);
+            Interact(interactableTarget);
         }
     }
 
@@ -41,24 +42,26 @@ public class TempPlayerController : MonoBehaviour
         _rb.linearVelocity = _moveInput * speed;
     }
 
-    private void Interact(GameObject target)
+    private void Interact(Interactable interactable)
     {
-        if (target.TryGetComponent(out Interactable interactable)) // check if the target has an Interactable component
-        {
-            interactable.Interact();
-            print("Interacting with " + target.name);
-        }
-
+        interactable.Interact();
+        print("Interacting with " + interactable.gameObject.name);
     }
 
     private void OnTriggerEnter2D(Collider2D other) // use colliders to find stuff to interact with 
     {
-        target = other.gameObject;
+        if (other.gameObject.TryGetComponent(out Interactable interactable)) // check if the target has an Interactable component
+        {
+            interactableTarget = interactable;
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other) // use colliders to find stuff to not want to interact with anymore because we learn to live and let go
     {
-        target = null;
+        if (other.gameObject.GetComponent<Interactable>() != null) // check if the target has an Interactable component
+        {
+            interactableTarget = null; // if not, set to null
+        }
     }
     
 }

@@ -7,7 +7,8 @@ public class Vent : Interactable
     private PlayerHide playerHide; //player hide script
     private SpriteRenderer spriteRenderer; //sprite renderer for the vent object
     private Color ventColour; //colour of the vent object
-    void Awake()
+    
+    void Awake() //Just used to find dependencies in the scene
     {   
         player = GameObject.FindGameObjectWithTag("Player"); //finds the player object in the scene
         
