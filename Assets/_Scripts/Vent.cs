@@ -53,14 +53,13 @@ public class Vent : Interactable
         if (playerHide.isInVent == true)
         {
             player.transform.position = new Vector3(transform.position.x, transform.position.y, transform.position.z);
-            
             ExitVent();
         }
     }
 
     private void OnMouseEnter()
     {
-        if (playerHide.isInVent == true)
+        if (playerHide.isInVent == true && playerHide.currentVent != this )
         {
             spriteRenderer.color = new Color(ventColour.r, ventColour.g, ventColour.b, 0.5f); //make sprite transparent
         }
@@ -68,22 +67,23 @@ public class Vent : Interactable
 
     private void OnMouseExit()
     {
-        {
-            spriteRenderer.color = ventColour; //reset sprite colour to original
-        }
+        spriteRenderer.color = ventColour; //reset sprite colour to original
+        
     }    
 
     private void EnterVent()
     {
         playerHide.Hide();
         playerHide.isInVent = true;
+        playerHide.currentVent = this; //sets the current vent to the one the player is in
+        CameraManager.instance.SwitchToMainCamera();
     }
 
     private void ExitVent()
     {
         playerHide.Unhide();
-        playerHide.isInVent = false; 
-        
+        playerHide.isInVent = false;
+        CameraManager.instance.SwitchToFollowCamera();
     }
 }
 //TODO: handle instance seperation of vents for more reliable behaviour 

@@ -20,7 +20,7 @@ public class CameraManager : MonoBehaviour
 
     void Start()
     {
-        SwitchToMainCamera(); // start with the main camera
+        SwitchToFollowCamera(); // start with the main camera
     }
 
     public void SwitchToFollowCamera()
