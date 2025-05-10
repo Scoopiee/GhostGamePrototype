@@ -94,8 +94,19 @@ public class PlayerController : MonoBehaviour
     }
 
 
-    public void SetPowerChargeOnSlider()
+    public void AddToPowerCharge(float powerToAdd)
     {
-        slider.value = powerCharge;
+        if (powerCharge + powerToAdd > slider.maxValue)
+        {
+            // TODO: Add an animation to slider to show power is full
+        }
+        else
+        {
+            powerCharge += powerToAdd;
+            slider.value = powerCharge;
+        }
+        
+        
+        
     }
 }

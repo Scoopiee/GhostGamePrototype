@@ -7,8 +7,8 @@ public class Battery : MonoBehaviour, IItem
     
     public void OnPickUp(PlayerController player)
     {
-        player.powerCharge += powerInBattery;
-        player.SetPowerChargeOnSlider();
+        
+        player.AddToPowerCharge(powerInBattery);
         Destroy(gameObject);
     }
 }
