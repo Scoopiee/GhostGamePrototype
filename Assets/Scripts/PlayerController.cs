@@ -6,6 +6,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private float speed;
     
+    
     private InputAction _moveAction;
     private InputAction _interactAction;
     private InputAction _pauseAction;
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        
     }
 
     private void Start()
@@ -41,10 +43,9 @@ public class PlayerController : MonoBehaviour
         {
             _moveInput = _moveAction.ReadValue<Vector2>();
 
-            if (_interactAction.triggered)
-            {
-                Interact();
-            }
+            if (_interactAction.triggered) Interact();
+            
+            
         }
         
         if (_pauseAction.triggered)
@@ -62,7 +63,9 @@ public class PlayerController : MonoBehaviour
 
     private void FixedUpdate()
     {
-        _rb.linearVelocity = _moveInput * speed;
+        //_rb.linearVelocity = _moveInput * speed;
+        _rb.AddForce(_moveInput * speed);
+        
     }
 
     private void Interact()
