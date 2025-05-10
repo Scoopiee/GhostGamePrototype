@@ -1,3 +1,5 @@
+using System.Collections;
+
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
@@ -7,6 +9,11 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private Slider slider;
     [SerializeField] private float speed;
+    [SerializeField, Range(0f, 1f)]private float opacityWhenInvisible;
+    [SerializeField] private float invisibilityDuration;
+    [SerializeField, Range(0f, 100f)] private float invisibilityCost;
+    
+    private float _originalOpacity;
 
     public float powerCharge;
     
@@ -14,12 +21,15 @@ public class PlayerController : MonoBehaviour
     private InputAction _moveAction;
     private InputAction _interactAction;
     private InputAction _pauseAction;
+    private InputAction _invisibilityAction;
     
     private Vector2 _moveInput = Vector2.zero;
     private bool _interact;
     private bool _pause;
+    private bool _invisible;
     
     private Rigidbody2D _rb;
+    private SpriteRenderer _sr;
     
     
     private float _yDirection;
@@ -28,6 +38,9 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         _rb = GetComponent<Rigidbody2D>();
+        _sr = GetComponent<SpriteRenderer>();
+        
+        _originalOpacity = _sr.color.a;
         
     }
 
@@ -39,6 +52,7 @@ public class PlayerController : MonoBehaviour
         _interactAction = InputSystem.actions.FindAction("Interact");
         // Check for Escape key (or start button on controller) press
         _pauseAction = InputSystem.actions.FindAction("Pause");
+        _invisibilityAction = InputSystem.actions.FindAction("Invisibility");
     }
 
     private void Update()
@@ -63,6 +77,8 @@ public class PlayerController : MonoBehaviour
                 pauseMenu.PauseGame();
             }
         }
+        
+        if (_invisibilityAction.triggered) GoInvisible();
 }
 
     private void FixedUpdate()
@@ -77,6 +93,37 @@ public class PlayerController : MonoBehaviour
         Debug.Log("Interact");
         // TODO: Make an interact function which hides a player if hiding spot in certain range
     }
+
+    private void GoInvisible()
+    {
+        if (!_invisible && powerCharge >= invisibilityCost)
+        {
+            SubtractFromPowerCharge(10);
+            
+            Color currentColor = _sr.color;
+
+            currentColor.a = opacityWhenInvisible;
+
+            _sr.color = currentColor;
+
+            Debug.Log("GoInvisible");
+
+            StartCoroutine(RevertVisibilityAfterDelay(invisibilityDuration));
+        } 
+        else if (powerCharge < invisibilityCost)
+        {
+            // TODO: Animation to show not enough power
+        }
+    }
+    
+    private IEnumerator RevertVisibilityAfterDelay(float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        
+        Color currentColor = _sr.color;
+        currentColor.a = _originalOpacity;
+        _sr.color = currentColor;
+    }
     
     private void OnTriggerEnter2D(Collider2D other)
     {
@@ -89,8 +136,6 @@ public class PlayerController : MonoBehaviour
             }
         }
         
-        
-
     }
 
 
@@ -106,7 +151,19 @@ public class PlayerController : MonoBehaviour
             slider.value = powerCharge;
         }
         
+    }
+
+    public void SubtractFromPowerCharge(float powerToSubtract)
+    {
+        if (powerCharge - powerToSubtract < slider.minValue)
+        {
+            powerCharge = slider.minValue;
+        }
+        else
+        {
+            powerCharge -= powerToSubtract;
+        }
         
-        
+        slider.value = powerCharge;
     }
 }
