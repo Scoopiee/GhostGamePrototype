@@ -5,6 +5,8 @@ public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PauseMenu pauseMenu;
     [SerializeField] private float speed;
+
+    public float powerCharge;
     
     
     private InputAction _moveAction;
@@ -74,12 +76,16 @@ public class PlayerController : MonoBehaviour
         // TODO: Make an interact function which hides a player if hiding spot in certain range
     }
     
-    private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D other)
     {
-        if (collision.gameObject.CompareTag("Item"))
+        if (other.gameObject.CompareTag("Item"))
         {
-            // TODO: Add the object collided with to player's inventory (removing item from map)
-
+            IItem pickup = other.gameObject.GetComponent<IItem>();
+            if (pickup != null)
+            {
+                pickup.OnPickUp(this);
+            }
         }
+
     }
 }
