@@ -1,9 +1,11 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private PauseMenu pauseMenu;
+    [SerializeField] private Slider slider;
     [SerializeField] private float speed;
 
     public float powerCharge;
@@ -86,6 +88,14 @@ public class PlayerController : MonoBehaviour
                 pickup.OnPickUp(this);
             }
         }
+        
+        
 
+    }
+
+
+    public void SetPowerChargeOnSlider()
+    {
+        slider.value = powerCharge;
     }
 }
