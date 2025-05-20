@@ -16,6 +16,8 @@ public class CameraManager : MonoBehaviour
         {
             instance = this; // assign the current instance 
         }
+        
+        
     }
 
     void Start()
