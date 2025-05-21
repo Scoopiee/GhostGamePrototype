@@ -4,6 +4,7 @@ public class UIManager : MonoBehaviour
 {
     [SerializeField] private GameObject gameUICanvas;
     [SerializeField] private GameObject pauseMenuPanel;
+    [SerializeField] private GameObject optionsMenuPanel;
     private InputAction _pauseAction;
     public static UIManager instance;
     void Awake()
@@ -21,23 +22,33 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         // Initialize UI elements here
-       //gameUICanvas.SetActive(true); // Show the game UI canvas
-       //pauseMenuPanel.SetActive(false); // Hide the pause menu panel}
+
         _pauseAction = InputSystem.actions.FindAction("Pause");
     
     }
     void Update()
     {
-        if (_pauseAction.triggered)
+        
+        if (_pauseAction.triggered && pauseMenuPanel.activeSelf == false)
         {
-            togglePanel(pauseMenuPanel);
+            Debug.Log("Pause Menu Triggered (on) (UIManager)");
+            ShowPanel(pauseMenuPanel);
+            GameManager.instance.PauseGame();
+        }
+        
+        else if (_pauseAction.triggered && pauseMenuPanel.activeSelf == true)
+        {
+            Debug.Log("Pause Menu Triggered (off) (UIManager)");
+            HidePanel(pauseMenuPanel);
+            GameManager.instance.ResumeGame();
         }
     }
 
     void ShowPanel(GameObject panel)
-        {
-            panel.SetActive(true);
-        }
+    {
+        panel.SetActive(true);
+        Debug.Log("Panel " + panel.name + " is now active.");
+    }
     void HidePanel(GameObject panel)
         {
             panel.SetActive(false);

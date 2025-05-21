@@ -39,15 +39,11 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (!pauseMenu.paused)
-        {
-            _moveInput = _moveAction.ReadValue<Vector2>();
-
-            if (_interactAction.triggered) Interact();
+        _moveInput = _moveAction.ReadValue<Vector2>();
+        if (_interactAction.triggered) Interact();
             
-            
-        }
         
+        /*
         if (_pauseAction.triggered)
         {
             if (pauseMenu.paused)
@@ -59,6 +55,7 @@ public class PlayerController : MonoBehaviour
                 pauseMenu.PauseGame();
             }
         }
+        */
 }
 
     private void FixedUpdate()
