@@ -1,23 +1,16 @@
-using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.UI;
 
-public class PlayerController : MonoBehaviour
+public class PlayerMovementController : MonoBehaviour
 {
     private Rigidbody2D _rb;
     private PlayerPowersController _playerPowersController;
     
-    [SerializeField] private PauseMenu pauseMenu;
+    [SerializeField] private Interactable interactableTarget = null;
     [SerializeField] private float speed;
     
-    private float _originalOpacity;
-
-    public float powerCharge;
-    
-    private InputAction _moveAction;
+    public InputAction moveAction;
     private InputAction _interactAction;
-    private InputAction _pauseAction;
     private InputAction _invisibilityAction;
     
     private Vector2 _moveInput = Vector2.zero;
@@ -39,19 +32,21 @@ public class PlayerController : MonoBehaviour
     private void Start()
     {
         // Check for WASD (or controller) movement
-        _moveAction = InputSystem.actions.FindAction("Move");
+        moveAction = InputSystem.actions.FindAction("Move");
         // Check for E key (or north button on controller) press
         _interactAction = InputSystem.actions.FindAction("Interact");
-        // Check for Escape key (or start button on controller) press
-        _pauseAction = InputSystem.actions.FindAction("Pause");
+        
         _invisibilityAction = InputSystem.actions.FindAction("Invisibility");
+        
+        // Check for Escape key (or start button on controller) press
+        //_pauseAction = InputSystem.actions.FindAction("Pause");
     }
 
     private void Update()
     {
-        _moveInput = _moveAction.ReadValue<Vector2>();
-        if (_interactAction.triggered) Interact();
-            
+        _moveInput = moveAction.ReadValue<Vector2>();
+        if (_interactAction.triggered && interactableTarget != null) Interact(interactableTarget);
+        if (_invisibilityAction.triggered) _playerPowersController.GoInvisible();
         
         /*
         if (_pauseAction.triggered)
@@ -67,7 +62,6 @@ public class PlayerController : MonoBehaviour
         }
         */
         
-        if (_invisibilityAction.triggered) _playerPowersController.GoInvisible();
 }
 
     private void FixedUpdate()
@@ -77,10 +71,10 @@ public class PlayerController : MonoBehaviour
         
     }
 
-    private void Interact()
+    private void Interact(Interactable interactable)
     {
-        Debug.Log("Interact");
-        // TODO: Make an interact function which hides a player if hiding spot in certain range
+        interactable.Interact();
+        print("Interacting with " + interactable.gameObject.name);
     }
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -94,9 +88,21 @@ public class PlayerController : MonoBehaviour
             }
         }
         
+        // TODO: Add an interactable tag so that it only searches for a component if object is interactable to improve performance
+        if (other.gameObject.TryGetComponent(out Interactable interactable)) // check if the target has an Interactable component
+        {
+            interactableTarget = interactable;
+        }
+        
     }
-
-
-
+    
+    private void OnTriggerExit2D(Collider2D other) // use colliders to find stuff to not want to interact with anymore because we learn to live and let go
+    {
+        if (other.gameObject.GetComponent<Interactable>() != null) // check if the target has an Interactable component
+        {
+            interactableTarget = null; // if not, set to null
+        }
+    }
     
 }
+
