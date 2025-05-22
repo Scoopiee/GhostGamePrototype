@@ -33,14 +33,14 @@ public class UIManager : MonoBehaviour
         {
             Debug.Log("Pause Menu Triggered (on) (UIManager)");
             ShowPanel(pauseMenuPanel);
-            GameManager.instance.PauseGame();
+            GameManager.Instance.PauseGame();
         }
         
         else if (_pauseAction.triggered && pauseMenuPanel.activeSelf == true)
         {
             Debug.Log("Pause Menu Triggered (off) (UIManager)");
             HidePanel(pauseMenuPanel);
-            GameManager.instance.ResumeGame();
+            GameManager.Instance.ResumeGame();
         }
     }
 
