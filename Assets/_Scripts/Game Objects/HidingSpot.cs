@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class HidingSpot : Interactable
+public class HidingSpot : MonoBehaviour, IInteractable
 {
     private GameObject player;
     private PlayerHide playerHide; // Reference to the PlayerHide script
@@ -9,7 +9,7 @@ public class HidingSpot : Interactable
         player = GameObject.FindGameObjectWithTag("Player");
         playerHide = player.GetComponent<PlayerHide>();
     }
-    public override void Interact() // Overridden from Interactable abstract class
+    public void Interact() // Inherited from Interactable interface
     {
         if (playerHide.isHidden == false)
         {

@@ -6,7 +6,7 @@ public class PlayerMovementController : MonoBehaviour
     private Rigidbody2D _rb;
     private PlayerPowersController _playerPowersController;
     
-    [SerializeField] private Interactable interactableTarget = null;
+    [SerializeField] private IInteractable interactableTarget = null;
     [SerializeField] private float speed;
     
     public InputAction moveAction;
@@ -71,10 +71,10 @@ public class PlayerMovementController : MonoBehaviour
         
     }
 
-    private void Interact(Interactable interactable)
+    private void Interact(IInteractable interactable)
     {
         interactable.Interact();
-        print("Interacting with " + interactable.gameObject.name);
+        print("Interacting with " + ((MonoBehaviour)interactable).gameObject.name);
     }
     
     private void OnTriggerEnter2D(Collider2D other)
@@ -89,7 +89,7 @@ public class PlayerMovementController : MonoBehaviour
         }
         
         // TODO: Add an interactable tag so that it only searches for a component if object is interactable to improve performance
-        if (other.gameObject.TryGetComponent(out Interactable interactable)) // check if the target has an Interactable component
+        if (other.gameObject.TryGetComponent(out IInteractable interactable)) // check if the target has an Interactable component
         {
             interactableTarget = interactable;
         }
@@ -98,11 +98,10 @@ public class PlayerMovementController : MonoBehaviour
     
     private void OnTriggerExit2D(Collider2D other) // use colliders to find stuff to not want to interact with anymore because we learn to live and let go
     {
-        if (other.gameObject.GetComponent<Interactable>() != null) // check if the target has an Interactable component
+        if (other.gameObject.GetComponent<IInteractable>() != null) // check if the target has an Interactable component
         {
             interactableTarget = null; // if not, set to null
         }
     }
-    
 }
 

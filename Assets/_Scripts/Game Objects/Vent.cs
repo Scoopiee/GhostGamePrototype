@@ -1,7 +1,7 @@
 using System.Runtime.CompilerServices;
 using UnityEngine;
 
-public class Vent : Interactable
+public class Vent : MonoBehaviour, IInteractable
 {
     private GameObject player; //player object
     private PlayerHide playerHide; //player hide script
@@ -36,7 +36,7 @@ public class Vent : Interactable
     {
         ventColour = spriteRenderer.color; //gets the current colour of the vent 
     }
-    public override void Interact()
+    public void Interact() // Inherited from Interactable interface
     {
         if (playerHide.isHidden == false) //player entering the vent
         {

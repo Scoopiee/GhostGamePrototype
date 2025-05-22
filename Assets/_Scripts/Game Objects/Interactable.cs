@@ -3,7 +3,7 @@
 // but i did it anyway because why not, maybe it will be useful if the game gets a bit bigger and more complex.
 using UnityEngine;
 
-public abstract class Interactable : MonoBehaviour
+public interface IInteractable
 {
-    public abstract void Interact();
+    void Interact();
 }
