@@ -90,7 +90,7 @@ public class PlayerController : MonoBehaviour
             IItem pickup = other.gameObject.GetComponent<IItem>();
             if (pickup != null)
             {
-                pickup.OnPickUp(_playerPowersController);
+                pickup.OnPickUp(gameObject);
             }
         }
         

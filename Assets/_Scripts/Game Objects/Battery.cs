@@ -5,9 +5,9 @@ public class Battery : MonoBehaviour, IItem
 {
     [SerializeField] private float powerInBattery;
     
-    public void OnPickUp(PlayerPowersController player)
+    public void OnPickUp(GameObject player)
     {
-        player.AddToPowerCharge(powerInBattery);
+        player.GetComponent<PlayerPowersController>().AddToPowerCharge(powerInBattery);
         Destroy(gameObject);
     }
 }

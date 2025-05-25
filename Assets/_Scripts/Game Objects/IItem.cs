@@ -1,5 +1,7 @@
 
+using UnityEngine;
+
 public interface IItem
 {
-    void OnPickUp(PlayerPowersController player);
+    void OnPickUp(GameObject player);
 }

@@ -2,11 +2,14 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
     public bool paused = false;
+
+    public int score;
     
     [SerializeField] private TextMeshProUGUI eventText;
     [SerializeField] private TextMeshProUGUI timeText;
@@ -54,6 +57,7 @@ public class GameManager : MonoBehaviour
         else
         {
             _remainingTimeUntilNextEvent = 0;
+            GameOver();
         }
         
         // Convert current time to minutes and seconds
@@ -83,5 +87,11 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1f;
         paused = false;
         Debug.Log("Game Resumed");
+    }
+
+    private void GameOver()
+    {
+        Time.timeScale = 1f;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
     }
 }
