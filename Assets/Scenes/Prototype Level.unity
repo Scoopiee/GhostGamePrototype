@@ -2550,10 +2550,12 @@ MonoBehaviour:
   eventText: {fileID: 1355453751}
   timeText: {fileID: 441047209}
   events:
-  - text: First Ghost Hunter Appears
-    eventDuration: 10
-  - text: Second Ghost Hunter Appears
-    eventDuration: 5
+  - eventName: Preparation Phase
+    text: First Ghost Hunter Appears
+    eventDuration: 30
+  - eventName: Play Phase
+    text: Second Ghost Hunter Appears
+    eventDuration: 30
 --- !u!4 &1029062616
 Transform:
   m_ObjectHideFlags: 0
