@@ -3,23 +3,23 @@ using UnityEngine;
 
 public class PlayerInventoryController : MonoBehaviour
 {
-    private List<SoulOrb> _soulOrbs;
+    private List<SoulOrbData> _soulOrbs  = new List<SoulOrbData>();
 
 
-    public void AddSoulOrb(SoulOrb soulOrb)
+    public void AddSoulOrb(SoulOrbData soulOrbData)
     {
-        _soulOrbs.Add(soulOrb);
+        _soulOrbs.Add(soulOrbData);
         Debug.Log("Soul Orb Added" + _soulOrbs.Count);
     }
     
     
     public void GiveSouls(SoulBank soulBank)
     {
-        foreach (SoulOrb orb in _soulOrbs)
+        foreach (SoulOrbData orbData in _soulOrbs)
         {
             // TODO: Animation of soul bank for each orb, maybe particles fire
             Debug.Log("Soul Orb Given To Bank");
-            GameManager.Instance.score += orb.scoreValue;
+            GameManager.Instance.score += orbData.scoreValue;
             
         }
         _soulOrbs.Clear();
