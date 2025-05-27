@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad6b995d5cca14f4c84df398f33d4e52, type: 3}
-  m_Name: 30 Points Soul Orb
+  m_Name: Tim's Orb
   m_EditorClassIdentifier: 
-  soulOrbName: 30 Points Sould Orb
-  scoreValue: 30
+  ghostName: Tim
+  scoreValue: 20
