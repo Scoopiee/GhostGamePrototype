@@ -19,7 +19,7 @@ public class PlayerInventoryController : MonoBehaviour
         {
             // TODO: Animation of soul bank for each orb, maybe particles fire
             Debug.Log("Soul Orb Given To Bank");
-            GameManager.Instance.score += orbData.scoreValue;
+            GameManager.Instance.AddToScore(orbData.scoreValue);
             
         }
         _soulOrbs.Clear();

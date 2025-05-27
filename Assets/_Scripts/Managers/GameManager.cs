@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     
     [SerializeField] private TextMeshProUGUI eventText;
     [SerializeField] private TextMeshProUGUI timeText;
+    [SerializeField] private TextMeshProUGUI scoreText;
     [SerializeField] private List<Event> events;
     
     private int _currentEventNumber = 0;
@@ -93,5 +94,11 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 2);
+    }
+
+    public void AddToScore(int scoreToAdd)
+    {
+        score += scoreToAdd;
+        scoreText.text = "Score: " + score.ToString();
     }
 }
