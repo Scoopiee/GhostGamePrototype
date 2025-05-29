@@ -287,7 +287,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: -2135585597343286014, guid: 5aa8b770bc43046bc8d993d0d5b7f4a5, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -383,6 +383,7 @@ GameObject:
   - component: {fileID: 2988543930328162549}
   - component: {fileID: 8983034808363989308}
   - component: {fileID: 548395522654996828}
+  - component: {fileID: -2261593947190659173}
   m_Layer: 5
   m_Name: Soul Orb To Collect
   m_TagString: Untagged
@@ -410,7 +411,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 191, y: -61}
+  m_AnchoredPosition: {x: 175, y: -53.5}
   m_SizeDelta: {x: 330.8072, y: 82.48212}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &8983034808363989308
@@ -434,7 +435,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.8679245, g: 0.1432894, b: 0.1432894, a: 0.392}
+  m_Color: {r: 0.10196077, g: 0.50783503, b: 0.5294118, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -451,6 +452,22 @@ MonoBehaviour:
   m_FillOrigin: 0
   m_UseSpriteMesh: 0
   m_PixelsPerUnitMultiplier: 1
+--- !u!114 &-2261593947190659173
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5690881199697226379}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27ccba0549edf4a4dad611cf8e96502d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soulName: {fileID: 705216683133374088}
+  collectedToggle: {fileID: 6864710045571032991}
+  dispensedToggle: {fileID: 4768575782303017129}
+  soulImage: {fileID: 6838374426122208774}
 --- !u!1 &5952196769330308523
 GameObject:
   m_ObjectHideFlags: 0

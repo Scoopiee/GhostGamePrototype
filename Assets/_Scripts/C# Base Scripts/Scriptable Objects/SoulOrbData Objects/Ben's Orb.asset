@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ad6b995d5cca14f4c84df398f33d4e52, type: 3}
-  m_Name: Susan's Orb
+  m_Name: Ben's Orb
   m_EditorClassIdentifier: 
-  ghostName: Susan
-  scoreValue: 30
-  spriteColour: {r: 0.5283019, g: 0.0074759563, b: 0.0074759563, a: 1}
+  ghostName: Ben
+  scoreValue: 10
+  spriteColour: {r: 0.7830189, g: 0.6713359, b: 0.19575472, a: 1}

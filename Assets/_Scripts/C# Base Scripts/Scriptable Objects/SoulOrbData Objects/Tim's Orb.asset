@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ghostName: Tim
   scoreValue: 20
+  spriteColour: {r: 0.15294115, g: 0.81960785, b: 0.23723897, a: 1}
