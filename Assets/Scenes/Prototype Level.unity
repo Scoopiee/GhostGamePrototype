@@ -8722,13 +8722,14 @@ GameObject:
   - component: {fileID: 1422563484}
   - component: {fileID: 1422563486}
   - component: {fileID: 1422563485}
+  - component: {fileID: 1422563487}
   m_Layer: 5
   m_Name: Inventory Panel
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1422563484
 RectTransform:
   m_ObjectHideFlags: 0
@@ -8786,6 +8787,24 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1422563483}
   m_CullTransparentMesh: 1
+--- !u!114 &1422563487
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1422563483}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9a23adad22b87784789e3648466021b0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneSoulList: {fileID: 1236027685}
+  inventoryPanel: {fileID: 1422563483}
+  soulOrbToCollectPanelPrefab: {fileID: 5690881199697226379, guid: 3afb2de973bb20e469ebce443d54e3fd, type: 3}
+  verticalSpacing: 25
+  startYOffset: 65
+  startXOffset: 190
 --- !u!1 &1493342921
 GameObject:
   m_ObjectHideFlags: 0

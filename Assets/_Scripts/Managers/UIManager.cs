@@ -5,6 +5,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject gameUICanvas;
     [SerializeField] private GameObject pauseMenuPanel;
     [SerializeField] private GameObject optionsMenuPanel;
+    [SerializeField] private GameObject inventoryPanel;
     private InputAction _pauseAction;
     public static UIManager instance;
     void Awake()
