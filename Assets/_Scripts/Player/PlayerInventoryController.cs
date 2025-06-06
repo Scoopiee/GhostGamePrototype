@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class PlayerInventoryController : MonoBehaviour
 {
+    [SerializeField] private Inventory inventory;
     private List<SoulOrbData> _soulOrbs  = new List<SoulOrbData>();
 
 
@@ -18,6 +19,10 @@ public class PlayerInventoryController : MonoBehaviour
         foreach (SoulOrbData orbData in _soulOrbs)
         {
             // TODO: Animation of soul bank for each orb, maybe particles fire
+            if (UIManager.instance.soulOrbUIDictionary.TryGetValue(orbData, out SoulOrbToCollectInfo uiElement))
+            {
+                uiElement.DepositedSoul();
+            }
             Debug.Log("Soul Orb Given To Bank");
             GameManager.Instance.AddToScore(orbData.scoreValue);
             

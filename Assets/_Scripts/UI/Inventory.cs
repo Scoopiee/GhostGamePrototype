@@ -13,7 +13,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private float verticalSpacing;
     [SerializeField] private float startYOffset;
     [SerializeField] private float startXOffset;
-    
+
     private List<SoulOrbData> _soulsToCollect = new List<SoulOrbData>();
 
     private GameObject _tempPanel;
@@ -35,7 +35,7 @@ public class Inventory : MonoBehaviour
             currentY += _rt.sizeDelta.y + verticalSpacing;
         }
         
-        
+        UIManager.instance.InitializeDictionary();
         
     }
 }

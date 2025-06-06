@@ -15,3 +15,5 @@ MonoBehaviour:
   ghostName: Ben
   scoreValue: 10
   spriteColour: {r: 0.7830189, g: 0.6713359, b: 0.19575472, a: 1}
+  collected: 0
+  dispensed: 0

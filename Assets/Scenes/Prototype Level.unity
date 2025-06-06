@@ -9550,6 +9550,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 3487968885052390502}
     - target: {fileID: 149617176460761042, guid: f15f3418979ca6b42ab0524314ab8234, type: 3}
+      propertyPath: inventoryPanel
+      value: 
+      objectReference: {fileID: 1422563483}
+    - target: {fileID: 149617176460761042, guid: f15f3418979ca6b42ab0524314ab8234, type: 3}
       propertyPath: pauseMenuPanel
       value: 
       objectReference: {fileID: 4774677557626257036}

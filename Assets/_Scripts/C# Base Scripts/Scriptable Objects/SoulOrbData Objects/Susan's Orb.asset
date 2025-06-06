@@ -15,3 +15,5 @@ MonoBehaviour:
   ghostName: Susan
   scoreValue: 30
   spriteColour: {r: 0.5283019, g: 0.0074759563, b: 0.0074759563, a: 1}
+  collected: 0
+  dispensed: 0
