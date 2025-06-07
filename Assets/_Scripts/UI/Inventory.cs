@@ -35,7 +35,7 @@ public class Inventory : MonoBehaviour
             currentY += _rt.sizeDelta.y + verticalSpacing;
         }
         
-        UIManager.instance.InitializeDictionary();
+        UIManager.instance.soulOrbsManager.InitializeDictionary(gameObject);
         
     }
 }

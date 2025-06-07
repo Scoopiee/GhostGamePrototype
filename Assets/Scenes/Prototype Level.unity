@@ -2904,6 +2904,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8bf25c79016e42a4497c11a4e7506a37, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  inventory: {fileID: 0}
 --- !u!1 &951124013
 GameObject:
   m_ObjectHideFlags: 0
@@ -8401,6 +8402,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1236027686}
+  - component: {fileID: 1236027687}
   m_Layer: 0
   m_Name: Soul Orb List
   m_TagString: Untagged
@@ -8426,6 +8428,18 @@ Transform:
   - {fileID: 112279068}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1236027687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1236027685}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a16e0d42172e1e5488ec6957f34b2bdc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1355453749
 GameObject:
   m_ObjectHideFlags: 0
@@ -9557,6 +9571,10 @@ PrefabInstance:
       propertyPath: pauseMenuPanel
       value: 
       objectReference: {fileID: 4774677557626257036}
+    - target: {fileID: 149617176460761042, guid: f15f3418979ca6b42ab0524314ab8234, type: 3}
+      propertyPath: soulOrbsManager
+      value: 
+      objectReference: {fileID: 1236027687}
     - target: {fileID: 530004516927811807, guid: f15f3418979ca6b42ab0524314ab8234, type: 3}
       propertyPath: m_Name
       value: UI MANAGER

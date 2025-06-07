@@ -7,8 +7,9 @@ public class UIManager : MonoBehaviour
     [SerializeField] private GameObject pauseMenuPanel;
     [SerializeField] private GameObject optionsMenuPanel;
     [SerializeField] private GameObject inventoryPanel;
-
-    public Dictionary<SoulOrbData, SoulOrbToCollectInfo> soulOrbUIDictionary;
+    
+    public SoulOrbsManager soulOrbsManager;
+    
     
     private InputAction _pauseAction;
     public static UIManager instance;
@@ -27,7 +28,6 @@ public class UIManager : MonoBehaviour
     void Start()
     {
         // Initialize UI elements 
-        soulOrbUIDictionary = new Dictionary<SoulOrbData, SoulOrbToCollectInfo>();
 
         _pauseAction = InputSystem.actions.FindAction("Pause");
     
@@ -64,20 +64,5 @@ public class UIManager : MonoBehaviour
             panel.SetActive(!panel.activeSelf);
         }
     
-    // TODO: Make a new class for soul orb management, have it accessible only in UIManager 
-    public void InitializeDictionary()
-    {
-        
-        soulOrbUIDictionary.Clear();
-        SoulOrbToCollectInfo[] allSoulOrbPanels = inventoryPanel.GetComponentsInChildren<SoulOrbToCollectInfo>(true);
-        
-        foreach (SoulOrbToCollectInfo soulOrb in allSoulOrbPanels)
-        {
-            if (soulOrb.soulOrbData != null)
-            {
-                soulOrbUIDictionary[soulOrb.soulOrbData] = soulOrb;
-            }
-        }
-    }
     
 }

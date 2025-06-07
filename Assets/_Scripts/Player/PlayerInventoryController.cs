@@ -19,7 +19,7 @@ public class PlayerInventoryController : MonoBehaviour
         foreach (SoulOrbData orbData in _soulOrbs)
         {
             // TODO: Animation of soul bank for each orb, maybe particles fire
-            if (UIManager.instance.soulOrbUIDictionary.TryGetValue(orbData, out SoulOrbToCollectInfo uiElement))
+            if (UIManager.instance.soulOrbsManager.soulOrbUIDictionary.TryGetValue(orbData, out SoulOrbToCollectInfo uiElement))
             {
                 uiElement.DepositedSoul();
             }

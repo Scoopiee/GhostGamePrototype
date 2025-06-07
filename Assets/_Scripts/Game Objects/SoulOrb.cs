@@ -17,7 +17,7 @@ public class SoulOrb : MonoBehaviour, IItem
         // TODO: add an inventory system to drop show which souls have been collected by the player, to be returned to spawn point?
         player.GetComponent<PlayerInventoryController>().AddSoulOrb(soulOrbData);
         
-        if (UIManager.instance.soulOrbUIDictionary.TryGetValue(soulOrbData, out SoulOrbToCollectInfo uiElement))
+        if (UIManager.instance.soulOrbsManager.soulOrbUIDictionary.TryGetValue(soulOrbData, out SoulOrbToCollectInfo uiElement))
         {
             uiElement.CollectedSoul();
         }
