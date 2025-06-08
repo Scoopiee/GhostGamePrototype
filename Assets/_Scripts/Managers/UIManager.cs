@@ -10,8 +10,9 @@ public class UIManager : MonoBehaviour
     
     public SoulOrbsManager soulOrbsManager;
     
-    
     private InputAction _pauseAction;
+    private InputAction _inventoryAction;
+    
     public static UIManager instance;
     void Awake()
     {
@@ -30,7 +31,8 @@ public class UIManager : MonoBehaviour
         // Initialize UI elements 
 
         _pauseAction = InputSystem.actions.FindAction("Pause");
-    
+        _inventoryAction = InputSystem.actions.FindAction("Inventory");
+
     }
     void Update()
     {
@@ -41,11 +43,23 @@ public class UIManager : MonoBehaviour
             ShowPanel(pauseMenuPanel);
             GameManager.Instance.PauseGame();
         }
-        
         else if (_pauseAction.triggered && pauseMenuPanel.activeSelf == true)
         {
             Debug.Log("Pause Menu Triggered (off) (UIManager)");
             HidePanel(pauseMenuPanel);
+            GameManager.Instance.ResumeGame();
+        }
+        
+        if (_inventoryAction.triggered && inventoryPanel.activeSelf == false)
+        {
+            Debug.Log("Inventory Panel Triggered (on) (UIManager)");
+            ShowPanel(inventoryPanel);
+            GameManager.Instance.PauseGame();
+        }
+        else if (_inventoryAction.triggered && inventoryPanel.activeSelf == true)
+        {
+            Debug.Log("Inventory Panel Triggered (off) (UIManager)");
+            HidePanel(inventoryPanel);
             GameManager.Instance.ResumeGame();
         }
     }
