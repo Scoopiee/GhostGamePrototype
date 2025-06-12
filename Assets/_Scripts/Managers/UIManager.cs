@@ -28,7 +28,7 @@ public class UIManager : MonoBehaviour
 
     void Start()
     {
-        // Initialize UI elements 
+        // Initialize UI elements
 
         _pauseAction = InputSystem.actions.FindAction("Pause");
         _inventoryAction = InputSystem.actions.FindAction("Inventory");
@@ -64,12 +64,12 @@ public class UIManager : MonoBehaviour
         }
     }
 
-    void ShowPanel(GameObject panel)
+    public void ShowPanel(GameObject panel)
     {
         panel.SetActive(true);
         Debug.Log("Panel " + panel.name + " is now active.");
     }
-    void HidePanel(GameObject panel)
+    public void HidePanel(GameObject panel)
         {
             panel.SetActive(false);
         }

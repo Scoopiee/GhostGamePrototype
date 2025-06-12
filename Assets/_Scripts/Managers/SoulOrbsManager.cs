@@ -7,9 +7,7 @@ public class SoulOrbsManager : MonoBehaviour
     
     void Start()
     {
-        
         soulOrbUIDictionary = new Dictionary<SoulOrbData, SoulOrbToCollectInfo>();
-    
     }
     
     public void InitializeDictionary(GameObject inventoryPanel)

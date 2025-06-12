@@ -29,5 +29,7 @@ public class Inventory : MonoBehaviour
         
         UIManager.instance.soulOrbsManager.InitializeDictionary(gameObject);
         
+        // Must be active initially to load all of the soul orbs before they get removed after being picked up
+        UIManager.instance.HidePanel(gameObject);
     }
 }

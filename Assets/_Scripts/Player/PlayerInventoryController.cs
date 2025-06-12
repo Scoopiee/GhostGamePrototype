@@ -4,6 +4,7 @@ using UnityEngine;
 public class PlayerInventoryController : MonoBehaviour
 {
     [SerializeField] private Inventory inventory;
+    
     private List<SoulOrbData> _soulOrbs  = new List<SoulOrbData>();
 
 
